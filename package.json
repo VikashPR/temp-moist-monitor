@@ -1,0 +1,19 @@
+{
+  "name": "temp-moist-monitor",
+  "version": "1.0.0",
+  "description": "Real time temprature and moisture monitor using firebase and node-MCU",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VikashPR/temp-moist-monitor.git"
+  },
+  "author": "Vikash PR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VikashPR/temp-moist-monitor/issues"
+  },
+  "homepage": "https://github.com/VikashPR/temp-moist-monitor#readme"
+}
