@@ -68,7 +68,8 @@ void setup(){
 }
 
 void loop(){
-  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 500 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 10 || sendDataPrevMillis == 0))
+  {
     sendDataPrevMillis = millis();
     // Write an Int number on the database path test/int
     if (Firebase.RTDB.setInt(&fbdo, "test/int", count)){
