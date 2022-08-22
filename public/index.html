@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-  <title>Temp Moisture Monitor</title>
-</head>
-<body>
-  <h1>Hello firebase</h1>
-  <pre id='data'></pre>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="/__/firebase/8.10.1/firebase-database.js"></script>
+    <title>Temp Moisture Monitor</title>
+  </head>
+  <body>
+    <h1>Hello firebase</h1>
+    <pre id="data"></pre>
     <script src="script.js"></script>
-</body>
+    <script>
+      (function () {
+        const firebaseConfig = {
+          apiKey: 'AIzaSyB02A1wphpHOnXPqnnix5kYlK2CNn7JajE',
+          authDomain: 'iot-node-mcu-6bada.firebaseapp.com',
+          databaseURL: 'https://iot-node-mcu-6bada-default-rtdb.firebaseio.com',
+          projectId: 'iot-node-mcu-6bada',
+          storageBucket: 'iot-node-mcu-6bada.appspot.com',
+          messagingSenderId: '577848664346',
+          appId: '1:577848664346:web:ffd499f3366ec8c25d0ca3',
+        };
+        firebase.initializeApp(firebaseConfig);
+        // Data event listener starts
+        const data = document.getElementById('data');
+        const dbRefObject = firebase.database().ref().child('freakyjolly-demo');
+        dbRefObject.on(
+          'value',
+          (snap) => {
+            console.log(snap.val());
+            let dataFb = JSON.stringify(snap.val(), null, 3);
+            data.innerText = dataFb
+          },
+          function (error) {
+            // The fetch failed.
+            console.error(error);
+          }
+        );
+        // Stop
+      })();
+    </script>
+  </body>
 </html>
