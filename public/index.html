@@ -10,7 +10,10 @@
   </head>
   <body>
     <h1>Hello firebase</h1>
+    <span>Node-mcu 1 Value</span>
     <pre id="data"></pre>
+    <span>Node-mcu 2 Value</span>
+    <pre id="data2"></pre>
     <script src="script.js"></script>
     <script>
       (function () {
@@ -26,13 +29,27 @@
         firebase.initializeApp(firebaseConfig);
         // Data event listener starts
         const data = document.getElementById('data');
+        const data2 = document.getElementById('data2');
         const dbRefObject = firebase.database().ref().child('test');
+        const dbRefObject2 = firebase.database().ref().child('sensor2');
         dbRefObject.on(
           'value',
           (snap) => {
             console.log(snap.val());
             let dataFb = JSON.stringify(snap.val(), null, 3);
             data.innerText = dataFb
+          },
+          function (error) {
+            // The fetch failed.
+            console.error(error);
+          }
+        );
+        dbRefObject2.on(
+          'value',
+          (snap) => {
+            console.log(snap.val());
+            let dataFb = JSON.stringify(snap.val(), null, 3);
+            data2.innerText = dataFb
           },
           function (error) {
             // The fetch failed.
